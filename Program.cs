@@ -72,7 +72,15 @@ namespace PromotionEngineDemo
             }
             int totalPriceOfA = (counterOfA / 3) * 130 + (counterOfA % 3 * priceOfA);
             int totalPriceOfB = (counterOfB / 2) * 45 + (counterOfB % 2 * priceOfB);
-            int totalPriceofCandD = (((counterOfC + counterOfD) / 2) * 30) + ((counterOfC % 2 * priceOfC) + (counterOfD % 2 * priceOfD));
+            int totalPriceofCandD;
+            if (counterOfC == counterOfD)
+            {
+                totalPriceofCandD = counterOfC * 30;
+            }
+            else
+            {
+                totalPriceofCandD = (counterOfC * priceOfC) + (counterOfD * priceOfD);
+            }
             return totalPriceOfA + totalPriceOfB + totalPriceofCandD;
         }
     }
