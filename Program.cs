@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PromotionEngineDemo
 {
-     class Product
+     public class Product
     {
         public string Id { get; set; }
         public decimal Price { get; set; }
@@ -17,11 +17,11 @@ namespace PromotionEngineDemo
         int GetTotalPrice(List<Product> products);
     }
 
-    class ProductService : IProductService
+    public class ProductService : IProductService
     {
         public void GetPriceByType(Product product)
         {
-            switch (product.Id)
+            switch (product.Id.ToUpper())
             {
                 case "A":
                     product.Price = 50;
@@ -85,22 +85,6 @@ namespace PromotionEngineDemo
         }
     }
 
-    class FutureProductService : IProductService
-    {
-    
-        public void  GetPriceByType(Product product)
-        {
-            //To do code for future enhancement
- 	        throw new NotImplementedException();
-        }
-
-        public int  GetTotalPrice(List<Product> products)
-        {
-            //To do code for future enhancement
- 	        throw new NotImplementedException();
-        }
-     }
-
     class HandleProductService
     {
         private IProductService _productService;
@@ -115,6 +99,7 @@ namespace PromotionEngineDemo
             return this._productService.GetTotalPrice(products);  
         }  
     }
+
 
     class Program
     {
