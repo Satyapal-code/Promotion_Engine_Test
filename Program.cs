@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +17,7 @@ namespace PromotionEngineDemo
         int GetTotalPrice(List<Product> products);
     }
 
-     class ProductService : IProductService
+    class ProductService : IProductService
     {
         public void GetPriceByType(Product product)
         {
@@ -84,6 +84,38 @@ namespace PromotionEngineDemo
             return totalPriceOfA + totalPriceOfB + totalPriceofCandD;
         }
     }
+
+    class FutureProductService : IProductService
+    {
+    
+        public void  GetPriceByType(Product product)
+        {
+            //To do code for future enhancement
+ 	        throw new NotImplementedException();
+        }
+
+        public int  GetTotalPrice(List<Product> products)
+        {
+            //To do code for future enhancement
+ 	        throw new NotImplementedException();
+        }
+     }
+
+    class HandleProductService
+    {
+        private IProductService _productService;
+
+        public HandleProductService(IProductService productService)  
+        {  
+            this._productService = productService;  
+        }
+
+        public int CalculatePrice(List<Product> products)  
+        {
+            return this._productService.GetTotalPrice(products);  
+        }  
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -102,11 +134,10 @@ namespace PromotionEngineDemo
             }
 
             ProductService productServiceObj = new ProductService();
-            int totalPrice = productServiceObj.GetTotalPrice(products);
+            HandleProductService handleProductServiceObj=new HandleProductService(productServiceObj);
+            int totalPrice = handleProductServiceObj.CalculatePrice(products);
             Console.WriteLine("Total price:" + totalPrice);
             Console.ReadLine();
         }
     }
-
-
 }
