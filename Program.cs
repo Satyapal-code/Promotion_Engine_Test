@@ -17,7 +17,7 @@ namespace PromotionEngineDemo
         int GetTotalPrice(List<Product> products);
     }
 
-     class ProductService
+     class ProductService : IProductService
     {
         public void GetPriceByType(Product product)
         {
